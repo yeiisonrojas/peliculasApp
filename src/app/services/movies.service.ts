@@ -16,11 +16,17 @@ export class MoviesService {
   private ejecutarQuery<T>( query: string ) {
     query = URL + query;
     query += `&api_key=${ apikey }&language=es`;
-    return this.http.get<T>( query )
+    console.log(query);
+    return this.http.get<T>( query );
+  }
+
+  getPopulares(){
+    const query = '/discover/movie?sort_by=popularity.desc';
+    return this.ejecutarQuery<RespuestaMDB>(query)
   }
 
   getFeature(){
-    debugger;
+
     const hoy = new Date ();
     const ultimoDias = new Date ( hoy.getFullYear(), hoy.getMonth() + 1, 0).getDate();
     const mes = hoy.getMonth() + 1;
@@ -36,6 +42,9 @@ export class MoviesService {
     const inicio = `${ hoy.getFullYear() }-${ mesString } -01`;
     const fin = `${ hoy.getFullYear() }-${ mesString }-${ ultimoDias}`;
 
-    return this.ejecutarQuery<RespuestaMDB>(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${ hoy.getFullYear() }-${ mesString } -01&primary_release_date.lte=${ hoy.getFullYear() }-${ mesString }-${ ultimoDias}&api_key=b148578379d7973621a1d0c1411d0992`)
+    console.log("inicio ", inicio);
+    console.log("fin ", fin);
+
+    return this.ejecutarQuery<RespuestaMDB>(`/discover/movie?primary_release_date.gte=${inicio}&primary_release_date.lte=${fin}`);
   }
 }

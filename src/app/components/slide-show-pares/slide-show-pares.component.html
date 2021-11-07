@@ -1,0 +1,20 @@
+<ion-slides [options] = "slideOpts">
+  <i-slide *ngFor="let Pelicula of PeliculasNuevas | pares">
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-card >
+          <img class="poster" 
+                 [src]="Pelicula.poster_path | imagen">
+          </ion-card>
+      </ion-col>
+      <ion-col size="12">
+        <ion-card >
+          <img class="poster" 
+                 [src]="Pelicula.poster_path | imagen">
+          </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </i-slide> 
+</ion-slides>
