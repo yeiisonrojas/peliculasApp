@@ -3,12 +3,20 @@
 
     <ion-row>
       <ion-col size="12" **ngFor="let Pelicula of pares">
-        <ion-card >
+        <ion-card (click)="verDetalle( Pelicula.id )">
           <img class="poster" 
                  [src]="Pelicula.poster_path | imagen">
           </ion-card>
       </ion-col>
     </ion-row>
-
   </i-slide> 
+
+  <ion-slide class="slide-mas">
+    <ion-button class="btn-mas" expand="full" size="large" (click)="onClick()">
+      <ionn-icon slot="icon-only" name="add"></ionn-icon>
+    </ion-button>
+  </ion-slide>
+  
 </ion-slides>
+
+
